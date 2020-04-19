@@ -69,58 +69,32 @@ include('includes/config.php');
 
         Some of the Donar</h2>
         <div class="row">
-          <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
-                <div class="card-block">
-                    <h4 class="card-title"><a href="#">Mahfujur Rhman</a></h4>
-                    <p class="card-text"><b>  Gender :</b>Male</p>
-                    <p class="card-text"><b>Blood Group :</b> B+</p>
+            <?php 
 
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
-                <div class="card-block">
-                    <h4 class="card-title"><a href="#">Mahfujur Rhman</a></h4>
-                    <p class="card-text"><b>  Gender :</b>Male</p>
-                    <p class="card-text"><b>Blood Group :</b> B+</p>
+            $sql="SELECT * FROM tbl_bdooners";
+            $query=mysqli_query($con,$sql);
+            $row=mysqli_num_rows($query);
+            if ($row>0) {
+                $cont=1;
+                while ($result=mysqli_fetch_array($query)) {?>
+                  <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
+                        <div class="card-block">
+                            <h4 class="card-title"><a href="#"><?php echo $result['fname']; ?></a></h4>
+                            <p class="card-text"><b>  Gender :</b><?php echo $result['gender']; ?></p>
+                            <p class="card-text"><b>Blood Group :</b> <?php echo $result['bgorup']; ?></p>
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>   <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
-                <div class="card-block">
-                    <h4 class="card-title"><a href="#">Mahfujur Rhman</a></h4>
-                    <p class="card-text"><b>  Gender :</b>Male</p>
-                    <p class="card-text"><b>Blood Group :</b> B+</p>
+            <?php    }
+        }else{
+            echo "No Record Found";
+        }
 
-                </div>
-            </div>
-        </div>   <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
-                <div class="card-block">
-                    <h4 class="card-title"><a href="#">Mahfujur Rhman</a></h4>
-                    <p class="card-text"><b>  Gender :</b>Male</p>
-                    <p class="card-text"><b>Blood Group :</b> B+</p>
 
-                </div>
-            </div>
-        </div>   <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top img-fluid" src="images/blood-donor.jpg" alt="" ></a>
-                <div class="card-block">
-                    <h4 class="card-title"><a href="#">Mahfujur Rhman</a></h4>
-                    <p class="card-text"><b>  Gender :</b>Male</p>
-                    <p class="card-text"><b>Blood Group :</b> B+</p>
-
-                </div>
-            </div>
-        </div>
+        ?>
     </div>
     <div class="row">
         <div class="col-lg-6">

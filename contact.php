@@ -2,6 +2,31 @@
 error_reporting(0);
 include('includes/config.php');
 ?>
+<?php 
+if (isset($_POST['send'])) {
+	$name=$_POST['name'];
+	$contact=$_POST['contact'];
+	$email=$_POST['email'];
+	$message=$_POST['message'];
+	if (!empty($name) && !empty($contact) && !empty($email) && !empty($message) ) {
+		$sql="INSERT INTO tbl_contact (name,contact,email,message) VALUES('$name','$contact','$email','$message')";
+		$query=mysqli_query($con,$sql);
+		if ($query) {
+			$msg="Query Sent. We will contact you shortly";
+		}
+		else{
+			$error="Something went wrong. Please try again";
+		}
+	}else{
+		$error="Please fill the all value!!";
+	}
+
+
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +63,8 @@ include('includes/config.php');
 
 <body>
 
+
+
 	<!-- Navigation -->
 	<?php include('includes/header.php'); ?>
 	>
@@ -51,18 +78,20 @@ include('includes/config.php');
 		</ol>
 		<div class="row">
 			<div class="col-md-8">
+				<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 				<form name="sentMessage"  method="post">
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>Full Name:</label>
-							<input type="text" class="form-control" id="name" name="fullname" required data-validation-required-message="Please enter your name.">
+							<input type="text" class="form-control" id="name" name="name" required data-validation-required-message="Please enter your name.">
 							<p class="help-block"></p>
 						</div>
 					</div>
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>Phone Number:</label>
-							<input type="tel" class="form-control" id="phone" name="contactno"  required data-validation-required-message="Please enter your phone number.">
+							<input type="tel" class="form-control" id="phone" name="contact"  required data-validation-required-message="Please enter your phone number.">
 						</div>
 					</div>
 					<div class="control-group form-group">

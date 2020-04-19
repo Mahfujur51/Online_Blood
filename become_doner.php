@@ -152,7 +152,7 @@ else{
 
 							?>
 
-							<option value="<?php echo $result['bgroup']; ?>"><?php echo $result['bgroup']; ?></option>
+							<option value="<?php echo $result['bgorup']; ?>"><?php echo $result['bgorup']; ?></option>
 							<?php 
 						}
 					} ?>
