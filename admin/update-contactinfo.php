@@ -96,35 +96,27 @@ $msg="Info Updateed successfully";
 											
   	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-				<?php $sql = "SELECT * from  tblcontactusinfo ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{				?>	
+				
 
 				<div class="form-group">
 												<label class="col-sm-4 control-label"> Address</label>
 												<div class="col-sm-8">
-													<textarea class="form-control" name="address" id="address" required><?php echo htmlentities($result->Address);?></textarea>
+													<textarea class="form-control" name="address" id="address" required></textarea>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label"> Email id</label>
 												<div class="col-sm-8">
-													<input type="email" class="form-control" name="email" id="email" value="<?php echo htmlentities($result->EmailId);?>" required>
+													<input type="email" class="form-control" name="email" id="email"  required>
 												</div>
 											</div>
 <div class="form-group">
 												<label class="col-sm-4 control-label"> Contact Number </label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" value="<?php echo htmlentities($result->ContactNo);?>" name="contactno" id="contactno" required>
+													<input type="text" class="form-control"name="contactno" id="contactno" required>
 												</div>
 											</div>
-<?php }} ?>
+
 											<div class="hr-dashed"></div>
 											
 										

@@ -7,42 +7,34 @@ if(strlen($_SESSION['username'])==0)
 	header('location:index.php');
 }
 else{
-	if(isset($_REQUEST['hidden']))
-	{
-		$eid=intval($_GET['hidden']);
-		$status="0";
-		$sql = "UPDATE tblblooddonars SET Status=:status WHERE  id=:eid";
-		$query = $dbh->prepare($sql);
-		$query -> bindParam(':status',$status, PDO::PARAM_STR);
-		$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
-		$query -> execute();
-
-		$msg="Booking Successfully Cancelled";
+	if (isset($_GET['hidden'])) {
+		$id=$_GET['hidden'];
+		$status=0;
+		$hquery="UPDATE tbl_bdooners SET status='$status' WHERE id='$id'";
+		$hresult=mysqli_query($con,$hquery);
+		if ($hresult) {
+			$msg="Hidden succesfully Done !!";
+		}
+		# code...
 	}
 
-
-	if(isset($_REQUEST['public']))
-	{
-		$aeid=intval($_GET['public']);
+	if (isset($_GET['public'])) {
+		$id=$_GET['public'];
 		$status=1;
-
-		$sql = "UPDATE tblblooddonars SET Status=:status WHERE  id=:aeid";
-		$query = $dbh->prepare($sql);
-		$query -> bindParam(':status',$status, PDO::PARAM_STR);
-		$query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
-		$query -> execute();
-
-		$msg="Booking Successfully Confirmed";
+		$hquery="UPDATE tbl_bdooners SET status='$status' WHERE id='$id'";
+		$hresult=mysqli_query($con,$hquery);
+		if ($hresult) {
+			$msg="Booking  succesfully Done !!";
+		}
+		# code...
 	}
-	if(isset($_REQUEST['del']))
-	{
-		$did=intval($_GET['del']);
-		$sql = "delete from tblblooddonars WHERE  id=:did";
-		$query = $dbh->prepare($sql);
-		$query-> bindParam(':did',$did, PDO::PARAM_STR);
-		$query -> execute();
-
-		$msg="Record deleted Successfully ";
+	if (isset($_GET['delid'])) {
+		$id=$_GET['delid'];
+		$sqldel="DELETE FROM tbl_bdooners WHERE id='$id'";
+		$deletequry=mysqli_query($con,$sqldel);
+		if ($deletequry) {
+			$msg="Delete succesfully!!";
+		}
 	}
 
 	?>
@@ -147,31 +139,51 @@ else{
 											</tr>
 										</tfoot>
 										<tbody>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+											<?php 
+
+											$sqlall="SELECT * FROM tbl_bdooners";
+											$queryall=mysqli_query($con,$sqlall);
+											$numall=mysqli_num_rows($queryall);
+											if ($numall>0) {
+												$cont=1;
+												while ($value=mysqli_fetch_array($queryall)) {
+													?>
+													<tr>
+														<td><?php echo $cont; ?></td>
+														<td><?php echo $value['fname']; ?></td>
+														<td><?php echo $value['mobile']; ?></td>
+														<td><?php echo $value['email']; ?></td>
+														<td><?php echo $value['age']; ?></td>
+														<td><?php echo $value['gender']; ?></td>
+														<td><?php echo $value['bgorup']; ?></td>
+														<td><?php echo $value['address']; ?></td>
+														<td><?php echo $value['message']; ?></td>
 
 
-												<td>
-													<?php if($result->status==1)
-													{?>
-														<a  onclick="return confirm('Do you really want to hiidden this detail')"> Make Hidden</a> 
-													<?php } else {?>
 
-														<a  onclick="return confirm('Do you really want to Public this detail')"> Make Public</a>
+														<td>
+															<?php if($value['status']==1)
+															{?>
+																<a href="?hidden=<?php echo $value['id'] ?>" onclick="return confirm('Do you really want to hiidden this detail')"> Make Hidden</a> 
+															<?php } else {?>
 
-													<?php } ?>
-													<a  onclick="return confirm('Do you really want to delete this record')"> Delete</a>
-												</td>
+																<a href="?public=<?php echo $value['id']; ?>"  onclick="return confirm('Do you really want to Public this detail')"> Make Public</a>
 
-											</tr>
+															<?php } ?>
+															<a href="?delid=<?php echo $value['id']; ?>" onclick="return confirm('Do you really want to delete this record')">|| Delete</a>
+														</td>
+
+													</tr>
+													<?php 	
+													$cont++;
+
+												}
+											} else{
+												echo "No Result Found!!";
+											}
+
+
+											?>
 
 
 										</tbody>
