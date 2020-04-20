@@ -19,7 +19,7 @@ else{
 		<meta name="author" content="">
 		<meta name="theme-color" content="#3e454c">
 
-		<title>BBDMS | Admin Dashboard</title>
+		<title>Online Blood Bank | Admin Dashboard</title>
 
 		<!-- Font awesome -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -115,8 +115,22 @@ else{
 												<a href="manage-conactusquery.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 											</div>
 										</div>
+										<div class="col-md-3">
+											<div class="panel panel-default">
+												<div class="panel-body bk-danger text-light">
+													<div class="stat-panel text-center">
+														
+														
+														<div class="stat-panel-number h1 "> Download</div>
+														<div class="stat-panel-title text-uppercase">export to excel</div>
+													</div>
+												</div>
+												<a href="download-records.php" class="block-anchor panel-footer text-center">Download Details &nbsp; <i class="fa fa-arrow-right"></i></a>
+											</div>
+										</div>
 
 									</div>
+								
 								</div>
 							</div>
 						</div>

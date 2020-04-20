@@ -36,7 +36,7 @@ $error="Something went wrong. Please try again";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS | Admin add-bloodgroup</title>
+	<title>Online Blood Bank | Admin add-bloodgroup</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">

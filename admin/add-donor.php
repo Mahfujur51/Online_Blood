@@ -49,7 +49,7 @@ else{
 		<meta name="author" content="">
 		<meta name="theme-color" content="#3e454c">
 
-		<title>BBDMS| Admin Add Donor</title>
+		<title>Online Blood Bank| Admin Add Donor</title>
 
 		<!-- Font awesome -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">

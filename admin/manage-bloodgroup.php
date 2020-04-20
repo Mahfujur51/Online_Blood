@@ -38,7 +38,7 @@ else{
 		<meta name="author" content="">
 		<meta name="theme-color" content="#3e454c">
 
-		<title>BBDMS |Admin Manage Blood groups   </title>
+		<title>Online Blood Bank |Admin Manage Blood groups   </title>
 
 		<!-- Font awesome -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">

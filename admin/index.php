@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>BloodBank & Donor Management System | Admin Login</title>
+	<title>Online Blood Bank | Admin Login</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">

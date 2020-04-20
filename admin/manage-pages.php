@@ -7,18 +7,19 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{
-if($_POST['submit']=="Update")
-{
-	$pagetype=$_GET['type'];
-	$pagedetails=$_POST['pgedetails'];
-$sql = "UPDATE tblpages SET detail=:pagedetails WHERE type=:pagetype";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':pagetype',$pagetype, PDO::PARAM_STR);
-$query-> bindParam(':pagedetails',$pagedetails, PDO::PARAM_STR);
-$query -> execute();
-$msg="Page data updated  successfully";
+	if (isset($_POST['submit'])) {
+		$type=$_GET['type'];
+		$details=$_POST['details'];
+		$upsql="UPDATE tbl_pages SET details='$details' WHERE type='$type'";
+		$upresult=mysqli_query($con,$upsql);
+		if ($upresult) {
+			$msg="Pages Updated Successfully!!";
+		}else{
+			$errors="Something Wrong Try again Please!!";
+		}
 
-}
+	}
+
 
 ?>
 
@@ -33,7 +34,7 @@ $msg="Page data updated  successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS | Admin Manage Pages</title>
+	<title>Online Blood Bank | Admin Manage Pages</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -151,20 +152,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			
 			switch($_GET['type'])
 			{
-				case "terms" :
-									echo "Terms and Conditions";
-									break;
-				
-				case "privacy" :
-									echo "Privacy And Policy";
-									break;
-				
 				case "aboutus" :
-									echo "About US";
+									echo "About Us";
 									break;
-			
-				case "faqs" :
-									echo "FAQs";
+				
+				case "donor" :
+									echo "Why Become Donor";
 									break;
 											
 				default :
@@ -180,23 +173,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 									<div class="form-group">
 												<label class="col-sm-4 control-label">Page Details </label>
 												<div class="col-sm-8">
-			<textarea class="form-control" rows="5" cols="50" name="pgedetails" id="pgedetails" placeholder="Package Details" required>
-										<?php 
-$pagetype=$_GET['type'];
-$sql = "SELECT detail from tblpages where type=:pagetype";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':pagetype',$pagetype,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{		
-echo htmlentities($result->detail);
-}}
-?>
+			<textarea class="form-control" rows="5" cols="50" name="details" id="pgedetails" placeholder="Package Details" required>
+                                                 <?php 
+                                                 	if (isset($_GET['type'])) {
+                                                 		$type=$_GET['type'];
+                                                 		$sql="SELECT * FROM tbl_pages WHERE type='$type'";
+                                                 		$query=mysqli_query($con,$sql);
+                                                 		$result=mysqli_fetch_array($query);
+                                                 		if ($result) {
+                                                 			 echo $result['details'];
+                                                 		}
 
+                                                 	}
+
+
+                                                  ?>
 										</textarea> 
 												</div>
 											</div>

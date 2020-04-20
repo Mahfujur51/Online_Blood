@@ -4,7 +4,7 @@ session_start();
 session_regenerate_id(true);
 include('includes/config.php');
 
-if(strlen($_SESSION['alogin'])==0)
+if(strlen($_SESSION['username'])==0)
 	{	
 	header("Location: index.php"); //
 	}
@@ -26,36 +26,40 @@ if(strlen($_SESSION['alogin'])==0)
 									</thead>
 
 <?php 
+
+
+
 $filename="Donor list";
-$sql = "SELECT * from  tblblooddonars ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{				
+$sql="SELECT * FROM tbl_bdooners";
+$query=mysqli_query($con,$sql);
+$num=mysqli_num_rows($query);
+if ($num>0) {
+	$cont=1;
+	while ($result=mysqli_fetch_array($query)) {
+		
+
+
+			
 
 echo '  
 <tr>  
-<td>'.$cnt.'</td> 
-<td>'.$complainNumber= $result->FullName.'</td> 
-<td>'.	$MobileNumber= $result->MobileNumber.'</td> 
-<td>'.$EmailId= $result->EmailId.'</td> 
-<td>'.$Gender= $result->Gender.'</td> 
-<td>'.$Age= $result->Age.'</td> 
- <td>'.$BloodGroup=$result->BloodGroup.'</td>	
-  <td>'.$BloodGroup=$result->Address.'</td>	 
-   <td>'.$BloodGroup=$result->Message.'</td>	
-  <td>'.$BloodGroup=$result->PostingDate.'</td>	 					
+<td>'.$cont.'</td> 
+<td>'.$result['fname'].'</td> 
+<td>'.$result['mobile'].'</td> 
+<td>'.$result['email'].'</td> 
+<td>'.$result['age'].'</td> 
+<td>'.$result['gender'].'</td> 
+ <td>'.$result['bgorup'].'</td>	
+  <td>'.$result['address'].'</td>	 
+   <td>'.$result['message'].'</td>	
+  <td>'.$result['date'].'</td>	 					
 </tr>  
 ';
 header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=".$filename."-report.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
-			$cnt++;
+			$cont++;
 			}
 	}
 ?>
