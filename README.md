@@ -25,3 +25,6 @@ http://localhost/Online_blood/admin/index.php
 username = admin 
 passwod= moon
 now You can enjoy it . thank you so much . 
+
+demo link 
+https://www.bloodms.justitteam.com/
