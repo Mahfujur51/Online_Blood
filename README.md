@@ -23,8 +23,8 @@ http://localhost/Online_blood/
 For login to admit plan 
 http://localhost/Online_blood/admin/index.php
 username = admin 
-passwod= moon
+passwod= admin
 now You can enjoy it . thank you so much . 
 
 demo link 
-https://www.bloodms.justitteam.com/
+https://www.phpblood.microwebit.com/
